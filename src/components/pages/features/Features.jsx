@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import './features.css'
 import logo from '../../../assets/logo.png'
+import left from '../../../assets/left.png'
+import right from '../../../assets/right.png'
+
 import cardData from '../../../CardData'
 import PropTypes from 'prop-types';
 
@@ -21,34 +24,34 @@ Card.propTypes = {
 };
 
 const Amenities = () => {
-    const [currentSlide, setCurrentSlide] = useState(0);
+    const [CurrentIndex, setCurrentIndex] = useState(0);
     const cardsPerPage = 6;
+    const cardDataLength = cardData.length;
   
     const handleNextSlide = () => {
-      setCurrentSlide((prevSlide) =>
-        prevSlide + 1 < Math.ceil(cardData.length / cardsPerPage)
-          ? prevSlide + 1
-          : 0
-      );
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % cardDataLength);
     };
   
     const handlePrevSlide = () => {
-      setCurrentSlide((prevSlide) =>
-        prevSlide > 0 ? prevSlide - 1 : Math.ceil(cardData.length / cardsPerPage) - 1
-      );
+      setCurrentIndex((prevIndex) =>  prevIndex === 0 ? cardDataLength - 1 : prevIndex - 1);
     };
-  
-    // Calculate the range of cards to display based on the current slide
-    const startIndex = currentSlide * cardsPerPage;
-    const endIndex = startIndex + cardsPerPage;
-    const visibleCards = cardData.slice(startIndex, endIndex);
+
+    const startIndex = CurrentIndex;
+    const endIndex = (startIndex + cardsPerPage) % cardDataLength;
+    const visibleCards =[
+            ...cardData.slice(startIndex),
+            ...cardData.slice(0, endIndex),
+          ];
   
     return (
         <div className="amenities-container">
             <div className="amenities-heading">AMENITIES</div>
             <hr className='my-hr'/>
-
+            
             <div className="amenities-cards">
+            <button className="prev-button" onClick={handlePrevSlide}>
+                <img src={left} alt="prev" />
+            </button>
                 {visibleCards.map((card, index) => (
                         <Card
                             key={index}
@@ -57,10 +60,13 @@ const Amenities = () => {
                             description={card.description}
                         />
                     ))}
+                    <button className="next-button" onClick={handleNextSlide}>
+                        <img src={right} alt="next" />
+                    </button>
             </div>
             <div className="amenities-buttons">
-                <button className="prev-button" onClick={handlePrevSlide}>prev</button>
-                <button className="next-button" onClick={handleNextSlide}>next</button>
+                
+                
             </div>
         </div>
     )
