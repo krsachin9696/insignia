@@ -1,5 +1,47 @@
 import './features.css'
 import logo from '../../../assets/logo.png'
+import cardData from '../../../CardData'
+import PropTypes from 'prop-types';
+
+const Card = (props) => {
+    return (
+        <div className="card">
+            <img src={`/src/assets/${props.pic}`} alt="photo" />
+            <div className='card-title'>{props.title}</div>
+            <p className='card-des'>{props.description}</p>
+        </div>
+    )
+}
+
+Card.propTypes = {
+    pic: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+};
+
+const Amenities = () => {
+    return (
+        <div className="amenities-container">
+            <div className="amenities-heading">AMENITIES</div>
+            <hr className='my-hr'/>
+
+            <div className="amenities-cards">
+                {cardData.map((card, index) => (
+                        <Card
+                            key={index}
+                            pic={card.image}
+                            title={card.title}
+                            description={card.description}
+                        />
+                    ))}
+            </div>
+            <div className="amenities-buttons">
+                <button className="prev-button">prev</button>
+                <button className="next-button">next</button>
+            </div>
+        </div>
+    )
+}
 
 const Features = () => {
     return (
@@ -35,6 +77,8 @@ const Features = () => {
                 </div>
                 <div className="item6"></div>
             </div>
+
+            <Amenities />
         </div>
     )
 }
