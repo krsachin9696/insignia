@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import './features.css'
 import logo from '../../../assets/logo.png'
 import cardData from '../../../CardData'
@@ -20,13 +21,35 @@ Card.propTypes = {
 };
 
 const Amenities = () => {
+    const [currentSlide, setCurrentSlide] = useState(0);
+    const cardsPerPage = 6;
+  
+    const handleNextSlide = () => {
+      setCurrentSlide((prevSlide) =>
+        prevSlide + 1 < Math.ceil(cardData.length / cardsPerPage)
+          ? prevSlide + 1
+          : 0
+      );
+    };
+  
+    const handlePrevSlide = () => {
+      setCurrentSlide((prevSlide) =>
+        prevSlide > 0 ? prevSlide - 1 : Math.ceil(cardData.length / cardsPerPage) - 1
+      );
+    };
+  
+    // Calculate the range of cards to display based on the current slide
+    const startIndex = currentSlide * cardsPerPage;
+    const endIndex = startIndex + cardsPerPage;
+    const visibleCards = cardData.slice(startIndex, endIndex);
+  
     return (
         <div className="amenities-container">
             <div className="amenities-heading">AMENITIES</div>
             <hr className='my-hr'/>
 
             <div className="amenities-cards">
-                {cardData.map((card, index) => (
+                {visibleCards.map((card, index) => (
                         <Card
                             key={index}
                             pic={card.image}
@@ -36,8 +59,8 @@ const Amenities = () => {
                     ))}
             </div>
             <div className="amenities-buttons">
-                <button className="prev-button">prev</button>
-                <button className="next-button">next</button>
+                <button className="prev-button" onClick={handlePrevSlide}>prev</button>
+                <button className="next-button" onClick={handleNextSlide}>next</button>
             </div>
         </div>
     )
