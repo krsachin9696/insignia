@@ -81,7 +81,7 @@
 }
 
 .about{
-    height: 839px;
+    height: 550px;
     display: flex;
     justify-content: space-around;
     align-items: flex-start;
@@ -105,7 +105,7 @@
 .about-text {
     flex: 0.6;
 
-    margin-top: 30%;
+    margin-top: 120px;
     display: flex;
     flex-flow: column wrap;
     justify-content: space-around;

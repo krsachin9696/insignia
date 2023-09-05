@@ -53,6 +53,9 @@
 
     clip-path: polygon(0 0, 73% 0, 86% 100%, 0% 100%);
 }
+.build-upon > span{
+    color: #D8B25D;
+}
 .broucher{
     padding: 10px;
     width: 188px;
@@ -162,15 +165,13 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    transition: transform 0.3s ease; /* Add transition property */
-    transform: translateX(0); /* Initial translation */
-    /* background-color: blue; */
+    transition: transform 0.3s ease;
+    transform: translateX(0); 
 }
 
 .card img {
     max-width: 100%;
     max-height: 150px;
-    /* height: auto; */
 }
 .card-title{
     color: #000;
@@ -191,7 +192,6 @@
 }
 
 
-/* Reset some default button styles */
 button {
     background: none;
     border: none;
@@ -199,15 +199,10 @@ button {
     padding: 0;
 }
 
-/* Style for the container of the buttons */
-
-
-/* Style for the "Previous" button */
 .prev-button, .next-button{
     width: 20px;
     height: 20px;
     color: #fff;
-    /* padding: 10px 20px; */
     border-radius: 5px;
     background-image: url(../../../assets/gola.png);
     background-size: contain; 
@@ -215,42 +210,108 @@ button {
     background-repeat: no-repeat;
 }
 
-/* Style for the "Next" button */
-/* .next-button {
-    background-color: #28A745;
-    color: #fff;
-    border-radius: 5px;
-    background-image: url(../../../assets/gola.png);
-    background-size: contain; 
-    background-position: center; 
-    background-repeat: no-repeat;
-} */
 
+/* LOCATION */
 
-/* .prev-button {
-    text-align: center;
-    margin-top: 20px;
-    background-color: #007BFF;
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 50%;
-    margin-right: 10px;
-    position: relative;
+.location{
+    width: 90%;
+    margin: 5%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.location-heading{
+    width: 100%;
+    font-weight: bolder;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.location-heading > div {
+    width: 45%;
+}
+.location-center{
+    font-family: Copperplate Gothic Bold;
+    font-size: 32px;
+    font-style: normal;
+    line-height: 132%;
+}
+.location-center > span{
+    color: var(--Primary, #D8B25D);
 }
 
-.prev-button::before {
-    content: "←"; 
-    position: absolute;
-    left: 10px; /* Adjust the position as needed 
+
+    /* LANDMARK */
+
+.landmark-heading{
+    margin-left: 5%;
+    font-family: Copperplate Gothic Bold;
+    font-size: 32px;
+    font-style: normal;
+    line-height: 132%;
 }
 
-.next-button {
-    text-align: center;
-    margin-top: 20px;
-    background-color: #28A745;
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 50%;
-    position: relative; /* Required for pseudo-elements 
+.landmark{
+    padding: 0;
+    width: 90%;
+    height: 350px;
+    margin: 0 5% 0 5%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    
 }
- */
+
+.map{
+    flex-basis: 65%;
+    /* width: 60%; */
+    /* border: 3px solid red; */
+}
+.map > img{
+    width: 100%;
+}
+.utilities{
+    flex-basis: 35%;
+    
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+}
+.utilities-card{
+    /* border: 3px solid black; */
+    padding: 2px;
+    border-top: 2px solid #b17424;
+}
+.transparent-background {
+    width: 100%;
+    background-color: transparent;
+    border: 0;
+}
+
+
+ /* FLOOR  */
+
+ .floor{
+    margin: 5%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+ }
+
+ .floor-plans{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+ }
+
+.floor-card{
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
